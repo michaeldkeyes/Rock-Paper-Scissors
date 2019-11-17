@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+    var playerScore = 0
+    var computerScore = 0;
+
+    // Determines the computers selection by picking a random number 1 - 3
+    function computerPlay() {
+      let rand = Math.floor(Math.random() * 3) + 1;
+      let choice = "";
+
+      switch(rand) {
+        case 1:
+          choice = "rock";
+          break;
+        case 2:
+          choice = "paper";
+          break;
+        case 3:
+          choice = "scissors";
+          break;
+      }
+
+      return choice;
+    }
+
+    // Compares the player's choice to the computer's and increases the score
+    function playRound(playerSelection, computerSelection) {
+      let response = "";
+
+      switch(playerSelection.toLowerCase()) {
+        case "rock":
+          switch(computerSelection) {
+            case "rock":
+              return response = "Rock vs Rock. It's a tie!";
+              break;
+            case "paper":
+              computerScore++;
+              return response = "Rock vs Paper. Computer wins!";
+              break;
+            case "scissors":
+              playerScore++;
+              return response = "Rock vs Scissors. Player wins!";
+              break;
+          }
+          break;
+        case "paper":
+          switch(computerSelection) {
+            case "rock":
+              playerScore++;
+              return response = "Paper vs Rock. Player wins!";
+              break;
+            case "paper":
+              return response = "Paper vs Paper. It's a tie!";
+              break;
+            case "scissors":
+              computerScore++;
+              return response = "Paper vs Scissors. Computer wins!";
+              break;
+          }
+          break;
+        case "scissors":
+          switch(computerSelection) {
+            case "rock":
+              computerScore++;
+              return response = "Scissors vs Rock. Computer wins!";
+              break;
+            case "paper":
+              playerScore++;
+              return response = "Scissors vs Paper. Player wins!";
+              break;
+            case "scissors":
+              return response = "Scissors vs Scissors. It's a tie!";
+              break;
+          }
+      }    
+    }
+    
+    // Uses a loop to play a chosen number of rounds and outputs the winner
+    function game(numRounds) {
+      let i = 0;
+      let playerSelection, computerSelection = "";
+
+      for(i = 0; i < numRounds; i++) {
+        // Doesn't check for invalid input but I don't feel like coding that in
+        // I'm the only one playing this anyways
+        playerSelection = prompt("Rock, Paper, or Scissors?");
+        computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection));
+        console.log("Current Score: " + playerScore + " : " + computerScore);
+      }
+
+      if(playerScore > computerScore) {
+        alert("Player Wins!");
+      } else if(playerScore < computerScore) {
+        alert("Computer Wins!");
+      } else {
+        alert("It's a tie!");
+      }
+    }
+
+    game(5);
+  </script>
+</body>
+</html>
