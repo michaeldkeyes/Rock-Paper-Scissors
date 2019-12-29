@@ -86,6 +86,7 @@ function playRound(playerSelection, computerSelection) {
   }    
 }
 
+/*
 // Uses a loop to play a chosen number of rounds and outputs the winner
 function game(numRounds) {
   let i = 0;
@@ -109,3 +110,4 @@ function game(numRounds) {
     alert("It's a tie!");
   }
 }
+*/
